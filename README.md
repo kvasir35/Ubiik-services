@@ -26,7 +26,7 @@ The system consists of the following microservices:
 ### Prerequisites
 
 - Docker and Docker Compose
-- Python 3.11+ (for local development)
+- Python 3.13+
 - Git
 
 ### Using Docker Compose (Recommended)
