@@ -35,7 +35,7 @@ The system consists of the following microservices:
 
    ```bash
    git clone https://github.com/kvasir35/Ubiik-services
-   cd iot-data-processing-system
+   cd Ubiik-services
    ```
 
 2. **Start all services**
@@ -56,11 +56,11 @@ If you prefer to run services locally:
 
    ```bash
    # Device Service
-   cd services/device-service
+   cd device-service
    pip install -r requirements.txt
 
    # Message Gateway Service
-   cd ../message-gateway-service
+   cd message-gateway-service
    pip install -r requirements.txt
    ```
 
@@ -68,11 +68,11 @@ If you prefer to run services locally:
 
    ```bash
    # Terminal 1 - Device Service
-   cd services/device-service
+   cd device-service
    python start.py
 
    # Terminal 2 - Message Gateway Service
-   cd services/message-gateway-service
+   cd message-gateway-service
    python start.py
    ```
 
@@ -112,14 +112,20 @@ curl -X GET http://localhost:8001/devices/sensor-001/username
 
 Run tests for all services:
 
+If pytest is not in your environment PATH, you can use python -m pytest instead.
+
 ```bash
 # Test Device Service
 cd services/device-service
 pytest
+#OR
+python -m pytest
 
 # Test Message Gateway Service
 cd services/message-gateway-service
 pytest
+#OR
+python -m pytest
 ```
 
 ## Project Structure
