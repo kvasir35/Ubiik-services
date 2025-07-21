@@ -1,0 +1,46 @@
+services:
+  device-service:
+    build:
+      context: ./device-service
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      - DATABASE_URL=sqlite:///./data/device_service.db
+    volumes:
+      - device_data:/app/data
+    networks:
+      - iot-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  message-gateway-service:
+    build:
+      context: ./message-gateway-service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DEVICE_SERVICE_URL=http://device-service:8001
+      - READING_SERVICE_URL=http://reading-service:8002
+    networks:
+      - iot-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  device_data:
+    driver: local
+
+networks:
+  iot-network:
+    driver: bridge
