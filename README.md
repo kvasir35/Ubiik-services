@@ -34,7 +34,7 @@ The system consists of the following microservices:
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/kvasir35/Ubiik-services
    cd iot-data-processing-system
    ```
 
